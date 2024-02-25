@@ -1,0 +1,174 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+a.active,a:hover {
+    border-style: groove;
+    transition: .5s;
+}
+
+.background_picture {
+    height: 776px;
+    background: url(pics/pozadi.png) no-repeat;
+}
+
+body{
+    font-family: Lucida, sans-serif;
+    text-shadow: 2px 2px whitesmoke;
+}
+
+.checkbtn {
+    font-size: 30px;
+    color: black;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+#check {
+    display: none;
+}
+
+.cistic {
+	clear: both;
+}
+
+footer {
+    font-size: 24px;
+    font-weight: 5px;
+    text-shadow: 2px 2px whitesmoke;
+    margin: 20px;
+}
+
+footer span {
+    background-color: rgb(249, 232, 232, 0.5);
+    padding: 10px;
+    border-radius: 3px;
+}
+
+#form {
+    padding: 5%;
+}
+
+img  {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    filter: drop-shadow(2px 2px 2px whitesmoke);
+    padding: 5px;
+}
+
+#inputCurrencyStyle {
+    font-size: large;
+    background-color: rgb(249, 232, 232, 0.5);
+}
+
+#logo {
+	background: url('pics/logo.png') no-repeat;
+	height: 60px;
+	float: left;
+	margin: 12px 0px 0px 20px;
+}
+
+#logo h1 {	
+    font-size: 27px;
+    text-transform: uppercase;
+	margin: 14px 0px 0px 65px;
+    float: left;
+}
+
+@media (max-width: 952px) {
+    label.logo{
+        font-size: 30px;
+        padding-left: 50px;
+    }
+    nav ul li {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 858px) {
+    .checkbtn{
+        display: block;
+    }
+    ul{
+        position: fixed;
+        width:min-content;
+        height: 100%;
+        background: whitesmoke;
+        top: 80px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+        z-index: 3;
+    }
+    nav ul li {
+        margin: 50px 0;
+        line-height: 30px;
+    }
+    nav ul li a {
+        font-size: 20px;
+    }
+    a:hover,a.active {
+        background: none;
+        color: black;
+    }
+    #check:checked ~ ul {
+        left: 0;
+    }
+}
+
+nav{
+    height: 80px;
+    width: 100%;
+}
+
+nav ul {
+    float:left;
+    margin-right: 20px;
+}
+
+nav ul li {
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 5px;
+}
+
+nav ul li a {
+    color: black;
+    font-size: 27px;
+    padding: 7px 13px;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+p {
+    font-size: 24px;
+}
+
+pre {
+    background-color: rgb(249, 232, 232, 0.5);
+    overflow-x: scroll;
+    font-size: large;
+    margin: 0 0 0 10%;
+}
+
+table, th, td {
+    align-content: center;
+    border: 2px double black;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    margin: 0px;
+}
+
+td {
+    font-size: 24px;
+}
