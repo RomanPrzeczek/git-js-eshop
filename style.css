@@ -68,6 +68,10 @@ img  {
     background-color: rgb(249, 232, 232, 0.5);
 }
 
+#indexSectionRow{
+    padding: 10px 15px 10px 15px;
+}
+
 #logo {
 	background: url('pics/logo.png') no-repeat;
 	height: 60px;
@@ -153,7 +157,6 @@ p {
 
 pre {
     background-color: rgb(249, 232, 232, 0.5);
-    overflow-x: scroll;
     font-size: large;
     margin: 0 0 0 10%;
 }
@@ -167,6 +170,14 @@ table, th, td {
 table {
     width: 100%;
     margin: 0px;
+}
+
+#table > tr:nth-child(2n) {
+    background-color: rgb(245, 245, 245, 0.7); 
+}
+
+#table > tr:nth-child(2n+1) {
+    background-color: rgb(135, 172, 226, 0.7);
 }
 
 td {

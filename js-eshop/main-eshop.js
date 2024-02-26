@@ -1,11 +1,11 @@
-function getXMLHttpRequest (url, callback)
+function getXMLHttpRequest (url, callback)  // obslužná funkce pro práci s HTTP endpointy
 {
-    let xhr = new XMLHttpRequest(); // A new instance of XMLHttpRequest is created.
-    xhr.open('GET', url, true); // The open method initializes a GET request to the specified URL. The third parameter true makes it an asynchronous request.
+    let xhr = new XMLHttpRequest(); 
+    xhr.open('GET', url, true); 
 
-    xhr.responseType = 'json'; // The responseType value defines the response type.
+    xhr.responseType = 'json'; 
 
-    xhr.onload = () => { // Inside the onload method, we wait for the response from the server.
+    xhr.onload = () => { 
 
         let status = xhr.status;
 
@@ -15,30 +15,29 @@ function getXMLHttpRequest (url, callback)
             callback(status);
         }
     };
-
-    xhr.send(); // The send method sends the request; the request is asynchronous by default.
+    xhr.send(); 
 } 
 
-function getRate () {
+function getRate () {    // vlastní funkce získávající data z API: data.kurzy.cz pomocí 
     getXMLHttpRequest('https://data.kurzy.cz/json/meny/b[1].json', (err, data) => {
 
     if (err != null) {
         console.error(err);
     } else {
-        kurz = data.kurzy.EUR.dev_stred;
+        kurz = data.kurzy.EUR.dev_stred;    // hodnota aktál kurzu EUR/CZK
         let kurzElement = document.getElementById("inputKurz");
-        kurzElement.innerHTML = kurz;
+        kurzElement.innerHTML = kurz;   // html element obsahující hodnotu kurzu
     }
 });
 }
 
-function calculateCZprice () {
+function calculateCZprice () {  // funkce počítající nahodile cenu
     const prePrice = (Math.random()*100+1);
     priceCZ = Math.round(prePrice);
 }
 
-function getPrice() {
-    document.getElementById("inputAmount").value = 1;
+function getPrice() {   // f-ce naplnující html elementy formuláře produktu (název,cena,množství)
+    document.getElementById("inputAmount").value = 1;   // startovní množství předdefinované na 1 ks
     let priceElement = document.getElementById("inputPiecePrice");
 
     if (document.getElementById("inputTitle").value){
@@ -46,18 +45,18 @@ function getPrice() {
         getRate();
         priceElement.innerHTML = `${priceCZ} / ${(priceCZ/kurz).toFixed(2)}`;
     }
-    else {
+    else {  // validace názvu, nesmí být prázdný jinak nelze odeslat formulář
         alert("Please check, if you have fill in the title, which can't be empty.");
         priceElement.innerHTML = "";
     }
 }
 
-function erasePriceElement (){
+function erasePriceElement (){  // pomocná f-ce nulující cenu po odeslání formuláře (příprava zadání nového produktu - nové ceny)
     let priceElemForErase = document.getElementById("inputPiecePrice");
     priceElemForErase.innerHTML="";
 }
 
-function find(id){
+function find(id){  // pocná f-ce pro editaci existující položky
     let inputPanelHover = document.getElementById(`inputPanel`);
     inputPanelHover.style.background = `#c1ecbf`;
 
@@ -72,17 +71,16 @@ function find(id){
     })
 }
 
-function removeData(id){
+function removeData(id){ // pomocná f-ce pro mazání položky
     goodsList = JSON.parse(localStorage.getItem('listItems')) ?? []
     goodsList = goodsList.filter(function(value){ 
         return value.id != id; 
     });
-    // localStorage.clear();
     localStorage.setItem('listItems', JSON.stringify(goodsList))
     allData()
 }
 
-function allData(){  
+function allData(){  // f-ce pro načtení všech existujících položek formou html tabulky
     table.innerHTML = ``
     goodsList = JSON.parse(localStorage.getItem('listItems')) ?? []
     goodsList.forEach(function (value, i){       
@@ -112,7 +110,7 @@ function allData(){
     erasePriceElement();
 }
 
-function save(){
+function save(){    // f-ce pro vytvoření/uložení nové položky
         goodsList = JSON.parse(localStorage.getItem('listItems')) ?? []
         var id
         goodsList.length != 0 ? goodsList.findLast((item) => id = item.id) : id = 0
@@ -146,8 +144,8 @@ function save(){
         localStorage.setItem('listItems', JSON.stringify(goodsList));
         let inputPanelHover = document.getElementById(`inputPanel`);
         inputPanelHover.style.background = `#87ace2`;
-    allData();
+    allData();  // znovu načtení seznamu položek (po přidání nové)
     document.getElementById('form').reset();
-    erasePriceElement();
+    erasePriceElement(); // smazání pole ceny položky
 }
 
